@@ -1,0 +1,41 @@
+{
+  "name": "babel-preset-h5",
+  "version": "0.0.1",
+  "description": "common h5 app babel preset, support latest ES2021",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noshower/babel-preset-h5.git"
+  },
+  "keywords": [
+    "ES2021",
+    "ES2020",
+    "ES2019",
+    "ES2018",
+    "ES2017",
+    "ES2016",
+    "ES2015",
+    "babel",
+    "babel-plugin",
+    "babel-preset"
+  ],
+  "author": "noshower",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/noshower/babel-preset-h5/issues"
+  },
+  "homepage": "https://github.com/noshower/babel-preset-h5#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.12.5",
+    "core-js": "^3.8.3",
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "@babel/preset-typescript": "^7.12.7"
+  }
+}
