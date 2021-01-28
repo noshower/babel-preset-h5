@@ -15,7 +15,7 @@ const isEmptyObject = (obj) => {
 };
 
 module.exports = (api, opts) => {
-  const { targets } = opts;
+  const { targets, useTypeScript = true } = opts;
   return {
     presets: [
       [
@@ -44,13 +44,13 @@ module.exports = (api, opts) => {
           ...(runtime === 'classic' ? { useBuiltIns: true } : {}),
         },
       ],
-      [
+      useTypeScript && [
         require('@babel/preset-typescript'),
         {
           allowDeclareFields: true,
         },
       ],
-    ],
+    ].filter(Boolean),
     plugins: [
       [require('@babel/plugin-proposal-class-properties'), { loose: true }],
       [

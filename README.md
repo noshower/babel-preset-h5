@@ -8,6 +8,13 @@ h5 应用的通用 babel 预设
 [![NPM downloads](https://img.shields.io/npm/dm/babel-preset-h5.svg?style=flat-square)](https://www.npmjs.com/package/babel-preset-h5)
 [![GitHub issues](https://img.shields.io/github/issues/noshower/babel-preset-h5.svg)](https://github.com/noshower/babel-preset-h5/issues)
 
+# 配置选项
+
+| 选项          | 含义                   | 默认值                                  |
+| ------------- | ---------------------- | --------------------------------------- |
+| targets       | 代码运行需要支持的环境 | ['last 2 versions', '> 1%', 'ie >= 11'] |
+| useTypeScript | 是否使用 TypeScript    | true                                    |
+
 # 特点
 
 - 支持按需引入 polyfill
@@ -32,4 +39,4 @@ h5 应用的通用 babel 预设
 
 # 注意
 
-不支持 Proxy, 不支持 BigInt
+不支持 Proxy, 不支持 BigInt, 不支持装饰器
