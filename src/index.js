@@ -7,6 +7,14 @@ const runtime = (function () {
   }
 })();
 
+const onlyRemoveTypeImportsAble = (useTypeScript) => {
+  if (useTypeScript) {
+    const version = require('typescript').version;
+    return Number(version.match(/(\d+.\d+)/)[0]) >= 3.8;
+  }
+  return false;
+};
+
 const isEmptyObject = (obj) => {
   if (obj == null) {
     return true;
@@ -15,7 +23,7 @@ const isEmptyObject = (obj) => {
 };
 
 module.exports = (api, opts) => {
-  const { targets, useTypeScript = true } = opts;
+  const { targets, useTypeScript = true, useReact = true } = opts;
   return {
     presets: [
       [
@@ -36,7 +44,7 @@ module.exports = (api, opts) => {
           bugfixes: true,
         },
       ],
-      [
+      useReact && [
         require('@babel/preset-react'),
         {
           runtime: runtime,
@@ -48,6 +56,7 @@ module.exports = (api, opts) => {
         require('@babel/preset-typescript'),
         {
           allowDeclareFields: true,
+          onlyRemoveTypeImports: onlyRemoveTypeImportsAble(useTypeScript),
         },
       ],
     ].filter(Boolean),
