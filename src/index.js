@@ -1,15 +1,15 @@
 const runtime = (function () {
   try {
-    require.resolve('react/jsx-runtime');
-    return 'automatic';
+    require.resolve("react/jsx-runtime");
+    return "automatic";
   } catch (e) {
-    return 'classic';
+    return "classic";
   }
 })();
 
 const onlyRemoveTypeImportsAble = (useTypeScript) => {
   if (useTypeScript) {
-    const version = require('typescript').version;
+    const version = require("typescript").version;
     return Number(version.match(/(\d+.\d+)/)[0]) >= 3.8;
   }
   return false;
@@ -27,33 +27,33 @@ module.exports = (api, opts) => {
   return {
     presets: [
       [
-        require('@babel/preset-env'),
+        require("@babel/preset-env"),
         {
           targets: isEmptyObject(targets)
             ? {
-                browsers: ['last 2 versions', '> 1%', 'ie >= 11'],
+                browsers: ["last 2 versions", "> 1%", "ie >= 11"],
               }
             : targets,
-          useBuiltIns: 'usage',
+          useBuiltIns: "usage",
           corejs: {
-            version: require('core-js/package.json').version,
+            version: require("core-js/package.json").version,
             proposals: true,
           },
-          exclude: ['transform-typeof-symbol'],
+          exclude: ["transform-typeof-symbol"],
           modules: false,
           bugfixes: true,
         },
       ],
       useReact && [
-        require('@babel/preset-react'),
+        require("@babel/preset-react"),
         {
           runtime: runtime,
-          development: api.env('development'),
-          ...(runtime === 'classic' ? { useBuiltIns: true } : {}),
+          development: api.env("development"),
+          ...(runtime === "classic" ? { useBuiltIns: true } : {}),
         },
       ],
       useTypeScript && [
-        require('@babel/preset-typescript'),
+        require("@babel/preset-typescript"),
         {
           allowDeclareFields: true,
           onlyRemoveTypeImports: onlyRemoveTypeImportsAble(useTypeScript),
@@ -61,12 +61,12 @@ module.exports = (api, opts) => {
       ],
     ].filter(Boolean),
     plugins: [
-      [require('@babel/plugin-proposal-class-properties'), { loose: true }],
+      [require("@babel/plugin-proposal-class-properties"), { loose: true }],
       [
-        require('@babel/plugin-transform-runtime'),
+        require("@babel/plugin-transform-runtime"),
         {
           corejs: { version: 3, proposals: true },
-          version: require('@babel/runtime/package.json').version,
+          version: require("@babel/runtime/package.json").version,
           useESModules: true,
           helpers: true,
           regenerator: true,

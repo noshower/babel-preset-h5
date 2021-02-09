@@ -18,6 +18,7 @@
 - @babel/preset-typescript
 - @babel/runtime
 - @babel/runtime-corejs3
+- core-js
 
 如果你应用中 package.json 已经包含上述某几个依赖，请从 package.json 中移除这些依赖。 安装 babel-preset-h5 时会自动安装上述所有依赖。
 
@@ -25,17 +26,13 @@
 
 - 第一步：安装 babel-preset-h5
 
-```js
-npm install --save-dev babel-preset-h5
-```
-
-- 第二步：还需要安装 core-js
+要求 npm 版本 **5.0+**
 
 ```js
-npm install --save-dev core-js
+npx install-peerdeps --dev babel-preset-h5
 ```
 
-- 第三步：配置 babel 配置文件
+- 第二步：配置 babel 配置文件
 
 ```js
 // .babelrc
@@ -62,6 +59,18 @@ npm install --save-dev core-js
 - 不污染全局环境
 - 默认支持 React, 同时支持 react17
 - 默认支持 TypeScript4.1
+- 支持动态导入
+
+# 最佳实践
+
+指定环境变量，有助于减少线上包的大小。
+
+比如你可以在 webpack.config.js 中，显示指定环境变量
+
+```js
+process.env.BABEL_ENV = "production";
+process.env.NODE_ENV = "production";
+```
 
 # 支持的浏览器
 
